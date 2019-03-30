@@ -7,9 +7,11 @@ import Colors from '../constants/Colors';
 import Layout from '../constants/Layout';
 
 
-function UserProfile() {
+class UserProfile extends React.Component {
+  render() {
+    const { style } = this.props
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <View>
         <Image
           style={styles.profile}
@@ -24,14 +26,15 @@ function UserProfile() {
       </View>
     </View>
   )
+  }
 }
 
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.purple,
-    paddingHorizontal: Layout.padding,
-    paddingBottom: Layout.padding,
+    paddingHorizontal: Layout.padding/2,
+    paddingBottom: Layout.padding/2,
     alignItems: 'center',
     flexDirection: 'row',
   },

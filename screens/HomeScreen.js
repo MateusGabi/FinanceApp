@@ -19,34 +19,33 @@ import { BalanceCard } from "../components/BalanceCard";
 import { HealthStatusCard } from "../components/HealthStatus";
 
 export default class HomeScreen extends React.Component {
-
   state = {
     scrollY: new Animated.Value(0)
-  }
+  };
 
   static navigationOptions = {
     header: null
   };
 
   render() {
-
-      const AnimatedUserProfile = new Animated.createAnimatedComponent(UserProfile)
-      const AnimatedNavbar = new Animated.createAnimatedComponent(Navbar)
+    const AnimatedUserProfile = new Animated.createAnimatedComponent(
+      UserProfile
+    );
+    const AnimatedNavbar = new Animated.createAnimatedComponent(Navbar);
 
     const opacity = this.state.scrollY.interpolate({
       inputRange: [0, 40],
       outputRange: [1, 0]
-    })
+    });
 
     const scale = this.state.scrollY.interpolate({
-	inputRange: [-100, 0],
+      inputRange: [-100, 0],
       outputRange: [1.1, 1]
-    })
-
+    });
 
     return (
       <View style={styles.container}>
-            <Navbar />
+        <Navbar />
         <Animated.ScrollView
           style={styles.container}
           scrollEventThrottle={16}
@@ -62,9 +61,12 @@ export default class HomeScreen extends React.Component {
             }
           )}
         >
-          <AnimatedUserProfile style={{ opacity, transform: [
-              { scaleX: scale},{ scaleY: scale }
-          ] }} />
+          <AnimatedUserProfile
+            style={{
+              opacity,
+              transform: [{ scaleX: scale }, { scaleY: scale }]
+            }}
+          />
           <BalanceCard />
           <HealthStatusCard />
         </Animated.ScrollView>

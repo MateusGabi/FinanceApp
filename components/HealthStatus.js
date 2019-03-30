@@ -11,7 +11,9 @@ function Percentage(props) {
   return icon ? (
     <>
       <Icon.Ionicons name={icon} size={size} color={Colors[color]} />
-      <MonoText style={[styles.statusTextColor, { color: Colors[color]}]}>{percentage * 100}%</MonoText>
+      <MonoText style={[styles.statusTextColor, { color: Colors[color] }]}>
+        {percentage * 100}%
+      </MonoText>
     </>
   ) : (
     <View
@@ -42,7 +44,7 @@ function Status(props) {
         color={color}
         size={size}
       />
-      {name && <MonoText style={{fontSize: 12}}>{name}</MonoText>}
+      {name && <MonoText style={{ fontSize: 12 }}>{name}</MonoText>}
     </View>
   );
 }
@@ -58,10 +60,34 @@ function HealthStatusCard() {
         </MonoText>
       </CardHeader>
       <CardBody style={styles.body}>
-        <Status percentage={0.75} size={25} icon="ios-wallet" name="Cash Flow" color="purple" />
-        <Status percentage={0.5} size={25} icon="ios-document" name="Loan" color="blue" />
-        <Status percentage={0.65} size={25} icon="ios-checkmark-circle" name="Insurance" color="purple" />
-        <Status percentage={0.2} size={25} icon="ios-trending-up" name="Investment" color="purple" />
+        <Status
+          percentage={0.75}
+          size={25}
+          icon="ios-wallet"
+          name="Cash Flow"
+          color="purple"
+        />
+        <Status
+          percentage={0.5}
+          size={25}
+          icon="ios-document"
+          name="Loan"
+          color="blue"
+        />
+        <Status
+          percentage={0.65}
+          size={25}
+          icon="ios-checkmark-circle"
+          name="Insurance"
+          color="purple"
+        />
+        <Status
+          percentage={0.2}
+          size={25}
+          icon="ios-trending-up"
+          name="Investment"
+          color="purple"
+        />
       </CardBody>
     </Card>
   );

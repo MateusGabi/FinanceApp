@@ -1,15 +1,14 @@
-import React from 'react'
-import { Icon } from 'expo';
-import { View, StyleSheet } from 'react-native'
+import React from "react";
+import { Icon } from "expo";
+import { View, StyleSheet } from "react-native";
 
-import { MonoText } from './StyledText';
-import Layout from '../constants/Layout';
-import Colors from '../constants/Colors';
-import { Card, CardHeader, CardBody } from './Card';
+import { MonoText } from "./StyledText";
+import Layout from "../constants/Layout";
+import Colors from "../constants/Colors";
+import { Card, CardHeader, CardBody } from "./Card";
 
 function CallToAction(props) {
-
-  const {icon, action} = props
+  const { icon, action } = props;
 
   return (
     <View style={styles.callToAction}>
@@ -22,7 +21,7 @@ function CallToAction(props) {
       </View>
       <MonoText>{action}</MonoText>
     </View>
-  )
+  );
 }
 
 function BalanceCard() {
@@ -39,33 +38,32 @@ function BalanceCard() {
         <CallToAction icon="ios-wallet" action="Request" />
       </CardBody>
     </Card>
-  )
+  );
 }
-
 
 const styles = StyleSheet.create({
   callToActionContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between"
   },
   header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between"
   },
   label: {
     opacity: 0.75
   },
   callToAction: {
-    alignItems: 'center'
+    alignItems: "center"
   },
   iconContainer: {
     backgroundColor: Colors.purple,
-    paddingHorizontal: (Layout.padding / 2) + 5,
+    paddingHorizontal: Layout.padding / 2 + 5,
     paddingVertical: Layout.padding / 2,
-    textAlign: 'center',
-    borderRadius: (Layout.padding / 3),
+    textAlign: "center",
+    borderRadius: Layout.padding / 3,
     marginBottom: Layout.margin
   }
-})
+});
 
-export {BalanceCard}
+export { BalanceCard };

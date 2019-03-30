@@ -9,4 +9,7 @@ export default {
     height,
   },
   isSmallDevice: width < 375,
+  padding: 30,
+  margin: 10,
+  navbarIconSize: 26,
 };

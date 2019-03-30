@@ -3,6 +3,8 @@ import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading, Asset, Font, Icon } from 'expo';
 import AppNavigator from './navigation/AppNavigator';
 
+// https://www.behance.net/gallery/69579243/Finance-Mobile-App-UI-UX
+// We use this template
 export default class App extends React.Component {
   state = {
     isLoadingComplete: false,

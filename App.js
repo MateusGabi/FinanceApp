@@ -6,9 +6,15 @@ import AppNavigator from './navigation/AppNavigator';
 // https://www.behance.net/gallery/69579243/Finance-Mobile-App-UI-UX
 // We use this template
 export default class App extends React.Component {
+    
   state = {
     isLoadingComplete: false,
   };
+
+    componentDidMount(){
+	console.log('Appjs mounted')
+//	this.props.navigation.navigate('App')
+    }
 
   render() {
     if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
@@ -23,7 +29,7 @@ export default class App extends React.Component {
       return (
         <View style={styles.container}>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          <AppNavigator />
+              <AppNavigator />
         </View>
       );
     }

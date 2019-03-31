@@ -2,13 +2,15 @@ import React from "react";
 import { Platform } from "react-native";
 import {
   createStackNavigator,
-  createBottomTabNavigator
+  createBottomTabNavigator,
+  createAppContainer
 } from "react-navigation";
 
 import TabBarIcon from "../components/TabBarIcon";
 import HomeScreen from "../screens/HomeScreen";
 import LinksScreen from "../screens/LinksScreen";
 import SettingsScreen from "../screens/SettingsScreen";
+import IntroScreen from "../screens/IntroScreen";
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen
@@ -56,8 +58,24 @@ SettingsStack.navigationOptions = {
   )
 };
 
-export default createBottomTabNavigator({
+const AuthNavigator = createStackNavigator({
+  Choose: IntroScreen
+  //  Loading: App
+});
+
+const AppNavigator = createBottomTabNavigator({
   HomeStack,
   LinksStack,
   SettingsStack
 });
+
+export default AuthNavigator;
+
+/*
+
+createAppContainer({
+App: AppNavigator,
+    Auth: AuthNavigator
+}) 
+
+*/

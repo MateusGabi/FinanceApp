@@ -28,8 +28,11 @@ class Navbar extends React.Component {
   }
 }
 
-const navbarBasePadding = Layout.padding / 2;
+function FooNavbar() {
+  return <View style={styles.fooNavbar} />;
+}
 
+const navbarBasePadding = Layout.padding / 2;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.purple,
@@ -39,7 +42,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     justifyContent: "space-between"
+  },
+  fooNavbar: {
+    backgroundColor: Colors.white,
+    paddingTop: getStatusBarHeight()
   }
 });
 
 export { Navbar };
+export { FooNavbar };

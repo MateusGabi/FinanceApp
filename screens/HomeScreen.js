@@ -28,11 +28,6 @@ export default class HomeScreen extends React.Component {
   };
 
   render() {
-    const AnimatedUserProfile = new Animated.createAnimatedComponent(
-      UserProfile
-    );
-    const AnimatedNavbar = new Animated.createAnimatedComponent(Navbar);
-
     const opacity = this.state.scrollY.interpolate({
       inputRange: [0, 40],
       outputRange: [1, 0]
@@ -61,7 +56,7 @@ export default class HomeScreen extends React.Component {
             }
           )}
         >
-          <AnimatedUserProfile
+          <UserProfile
             style={{
               opacity,
               transform: [{ scaleX: scale }, { scaleY: scale }]

@@ -6,30 +6,6 @@ import { FooNavbar } from "../components/Navbar";
 import Colors from "../constants/Colors";
 import Layout from "../constants/Layout";
 
-// TODO: paste to component dir
-function Button(props) {
-  return (
-    <TouchableOpacity activeOpacity={0.8}>
-      <View
-        style={{
-          padding: Layout.padding / 2,
-          marginVertical: Layout.margin,
-          borderRadius: 10 * 4,
-          backgroundColor: Colors[props.color]
-        }}
-      >
-        <MonoText
-          style={{
-            textAlign: "center"
-          }}
-        >
-          {props.title}
-        </MonoText>
-      </View>
-    </TouchableOpacity>
-  );
-}
-
 function IntroScreen() {
   return (
     <View style={styles.container}>
@@ -67,21 +43,16 @@ const styles = StyleSheet.create({
   },
   description: { textAlign: "center", opacity: 0.75 },
   message: {
-    //    backgroundColor: "red",
     flex: 2,
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: Layout.padding * 2
   },
   footer: {
-    //	flex: 1,
-    //	alignItems: 'flex-end'
   },
   buttonArea: {
-    //    backgroundColor: "blue",
     alignItems: "stretch",
     padding: Layout.padding,
-    //flex: 1,
     flexDirection: "column"
   }
 });

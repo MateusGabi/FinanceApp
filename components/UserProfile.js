@@ -5,6 +5,7 @@ import { MonoText } from "./StyledText";
 import { Icon } from "expo";
 import Colors from "../constants/Colors";
 import Layout from "../constants/Layout";
+import { withAnimation } from "../helper/withAnimation";
 
 class UserProfile extends React.Component {
   render() {
@@ -51,4 +52,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export { UserProfile };
+export default withAnimation(UserProfile);

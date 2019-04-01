@@ -25,6 +25,7 @@ function Card(props) {
 const styles = StyleSheet.create({
   container: {
     margin: Layout.margin,
+    padding: Layout.padding / 2,
     backgroundColor: Colors.white,
     borderRadius: 10
   },

@@ -7,13 +7,11 @@ function MonoText(props) {
   );
 }
 
-function H1(props) {
+function TitleText(props) {
   return (
-    <MonoText style={[props.style, { fontSize: 22, fontWeight: "bold" }]}>
-      {props.children}
-    </MonoText>
+    <MonoText {...props} style={[props.style, { fontSize: 22 }]} /> 
   );
 }
 
-export { H1 };
+export { TitleText };
 export { MonoText };

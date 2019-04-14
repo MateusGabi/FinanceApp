@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import { Icon } from "expo";
 import { Card, CardBody, CardHeader } from "./Card";
-import { MonoText, H1 } from "./StyledText";
+import { MonoText, TitleText } from "./StyledText";
 import Colors from "../constants/Colors";
 import Layout from "../constants/Layout";
 
@@ -27,7 +27,7 @@ function Percentage(props) {
         }
       ]}
     >
-      <H1 style={styles.statusTextColor}>{percentage * 100}%</H1>
+      <TitleText style={styles.statusTextColor}>{percentage * 100}%</TitleText>
       {text && <MonoText style={styles.statusTextColor}>{text}</MonoText>}
     </View>
   );
@@ -54,7 +54,7 @@ function HealthStatusCard() {
     <Card>
       <CardHeader style={styles.header}>
         <Status size={100} text="Good" color="green" percentage={0.8} />
-        <H1>Good Health</H1>
+        <TitleText>Good Health</TitleText>
         <MonoText style={styles.description}>
           Your financial condition is in good health
         </MonoText>

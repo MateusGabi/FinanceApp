@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
-import { MonoText, H1 } from "../components/StyledText";
+import { MonoText } from "../components/StyledText";
 
 import Colors from "../constants/Colors";
 import Layout from "../constants/Layout";

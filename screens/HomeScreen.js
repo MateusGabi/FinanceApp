@@ -11,9 +11,9 @@ import {
 } from "react-native";
 import { WebBrowser } from "expo";
 
-import { MonoText, H1 } from "../components/StyledText";
+import { MonoText } from "../components/StyledText";
 import { Navbar } from "../components/Navbar";
-import { UserProfile } from "../components/UserProfile";
+import UserProfile from "../components/UserProfile";
 import Colors from "../constants/Colors";
 import { BalanceCard } from "../components/BalanceCard";
 import { HealthStatusCard } from "../components/HealthStatus";

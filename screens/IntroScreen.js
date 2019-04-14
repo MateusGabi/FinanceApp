@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
-import { MonoText, H1 } from "../components/StyledText";
+import { MonoText, TitleText } from "../components/StyledText";
 import { FooNavbar } from "../components/Navbar";
 
 import Colors from "../constants/Colors";
@@ -10,13 +10,13 @@ function IntroScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.message}>
-        <H1
+        <TitleText
           style={{
             margin: Layout.margin
           }}
         >
           Let's get started
-        </H1>
+        </TitleText>
         <MonoText style={styles.description}>
           Never a better time than now to start thinking about how you manage
           all your finances with ease.
@@ -48,8 +48,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingHorizontal: Layout.padding * 2
   },
-  footer: {
-  },
+  footer: {},
   buttonArea: {
     alignItems: "stretch",
     padding: Layout.padding,

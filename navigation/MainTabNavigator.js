@@ -11,6 +11,7 @@ import HomeScreen from "../screens/HomeScreen";
 import LinksScreen from "../screens/LinksScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import IntroScreen from "../screens/IntroScreen";
+import CreateAccountScreen from "../screens/CreateAccountScreen";
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen
@@ -59,8 +60,8 @@ SettingsStack.navigationOptions = {
 };
 
 const AuthNavigator = createStackNavigator({
+  CreateAccount: CreateAccountScreen,
   Choose: IntroScreen
-  //  Loading: App
 });
 
 const AppNavigator = createBottomTabNavigator({
@@ -69,13 +70,4 @@ const AppNavigator = createBottomTabNavigator({
   SettingsStack
 });
 
-export default AuthNavigator;
-
-/*
-
-createAppContainer({
-App: AppNavigator,
-    Auth: AuthNavigator
-}) 
-
-*/
+export default AppNavigator;

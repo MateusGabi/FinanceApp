@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, StyleSheet, View } from "react-native";
 import { getStatusBarHeight } from "react-native-status-bar-height";
-import { H1 } from "./StyledText";
+import { TitleText } from "./StyledText";
 import { Icon } from "expo";
 import Colors from "../constants/Colors";
 import Layout from "../constants/Layout";
@@ -17,7 +17,7 @@ class Navbar extends React.Component {
           size={Layout.navbarIconSize}
           color={Colors.navbarIconColor}
         />
-        <H1 style={{ color: "#fff" }}>Home</H1>
+        <TitleText style={{ color: "#fff" }}>Home</TitleText>
         <Icon.Ionicons
           name="ios-notifications-outline"
           size={Layout.navbarIconSize}

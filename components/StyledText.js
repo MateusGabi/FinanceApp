@@ -8,9 +8,7 @@ function MonoText(props) {
 }
 
 function TitleText(props) {
-  return (
-    <MonoText {...props} style={[props.style, { fontSize: 22 }]} /> 
-  );
+  return <MonoText {...props} style={[props.style, { fontSize: 22 }]} />;
 }
 
 export { TitleText };

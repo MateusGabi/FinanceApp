@@ -8,6 +8,7 @@ import {
 
 import TabBarIcon from "../components/TabBarIcon";
 import HomeScreen from "../screens/HomeScreen";
+import SavingsScreen from "../screens/SavingsScreen";
 import LinksScreen from "../screens/LinksScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import IntroScreen from "../screens/IntroScreen";
@@ -22,11 +23,7 @@ HomeStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={
-        Platform.OS === "ios"
-          ? `ios-information-circle${focused ? "" : "-outline"}`
-          : "md-information-circle"
-      }
+      name={Platform.OS === "ios" ? "ios-home" : "md-home"}
     />
   )
 };
@@ -41,6 +38,20 @@ LinksStack.navigationOptions = {
     <TabBarIcon
       focused={focused}
       name={Platform.OS === "ios" ? "ios-link" : "md-link"}
+    />
+  )
+};
+
+const SavingsStack = createStackNavigator({
+  Savings: SavingsScreen
+});
+
+SavingsStack.navigationOptions = {
+  tabBarLabel: "Savings",
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === "ios" ? "ios-albums" : "md-albums"}
     />
   )
 };
@@ -66,6 +77,7 @@ const AuthNavigator = createStackNavigator({
 
 const AppNavigator = createBottomTabNavigator({
   HomeStack,
+  SavingsStack,
   LinksStack,
   SettingsStack
 });

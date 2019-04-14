@@ -19,7 +19,9 @@ function CardBody(props) {
 }
 
 function Card(props) {
-  return <View style={styles.container}>{props.children}</View>;
+  const { style, ...others } = props;
+
+  return <View style={[styles.container, style]} {...others} />;
 }
 
 const styles = StyleSheet.create({

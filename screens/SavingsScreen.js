@@ -106,146 +106,224 @@ const cards = [
     status: "Ongoing",
     image:
       "https://images.unsplash.com/photo-1528164344705-47542687000d?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjEyMDd9",
-    title: "Japan Trip",
+    title: "Carro de patrão",
     description: "Lorem bla bla bla",
-    totalAmount: 4000,
+    totalAmount: 400000,
     currentAmount: 10
   },
   {
     status: "Ongoing",
     image:
       "https://images.unsplash.com/photo-1521058798685-39dd95c33314?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjEyMDd9",
-    title: "Buenos Aires Trip",
+    title: "Rock in Rio",
     description: "Lorem bla bla bla",
     totalAmount: 4000,
     currentAmount: 10
   },
   {
-    status: "Ongoing",
+    status: "Well Done",
     image:
       "https://images.unsplash.com/photo-1521058798685-39dd95c33314?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjEyMDd9",
     title: "Buenos Aires Trip",
-    description: "Lorem bla bla bla",
+    description: "Viajem com a turminha top da firma",
     totalAmount: 4000,
-    currentAmount: 10
+    currentAmount: 4000
   }
 ];
 
-function Goals(props) {
-  return (
-    <FlatList
-      horizontal
-      pagingEnabled
-      scrollEnabled
-      showsHorizontalScrollIndicator={false}
-      decelerationRate={0}
-      scrollEventThrottle={16}
-      snapToAlignment="left"
-      style={{ overflow: "visible" }}
-      data={cards}
-      keyExtractor={(item, index) => `${item.title}`}
-      renderItem={({ item, index }) => this.renderGoal(item, index)}
-    />
-  );
-}
+class Goals extends React.Component {
+  state = {
+    goals: [],
+    loading: true
+  };
 
-renderGoal = (item, index) => {
-  const isLastItem = index === cards.length - 1;
-  return (
-    <View
-      style={[
-        styles.flex,
-        styles.column,
-        styles.recommendation,
-        {
-          backgroundColor: "#fff",
-          shadowColor: "#000",
-          shadowOffset: {
-            width: 0,
-            height: 5
-          },
-          shadowOpacity: 0.2,
-          shadowRadius: 10,
-          borderRadius: 10
-        }
-      ]}
-    >
-      <View style={[styles.flex, styles.recommendationHeader]}>
-        <Image
-          style={[styles.recommendationImage]}
-          source={{ uri: item.image }}
-        />
-        <View style={[styles.flex, styles.row, styles.recommendationOptions]}>
-          <MonoText style={styles.recommendationTemp}>{item.status}</MonoText>
+  setStateAsync(state) {
+    return new Promise(resolve => {
+      this.setState(state, resolve);
+    });
+  }
+
+  async componentDidMount() {
+    const { data } = this.props;
+
+    const goals = await data.map(async goal => {
+      const { title } = goal;
+      const photoURL = await this.fetchImage(title);
+      return {
+        ...goal,
+        photoURL
+      };
+    });
+
+    Promise.all(goals).then(goals => this.setState({ goals, loading: false }));
+  }
+
+  async fetchImage(text) {
+    const unsplashURL =
+      "https://unsplash.com/napi/search?query=<query>&xp=&per_page=10";
+    const fetchURL = unsplashURL.replace("<query>", text.replace(" ", "+"));
+
+    const response = await fetch(fetchURL);
+    const {
+      photos: { results }
+    } = await response.json();
+
+    const photoURL = results
+      .map(i => i.urls.small)
+      .sort(() => Math.random() - 0.5)
+      .shift();
+
+    return photoURL;
+  }
+
+  render() {
+    const { goals, loading } = this.state;
+
+    if (goals.length < 1) {
+      return (
+        <View
+          style={{
+            padding: Layout.padding
+          }}
+        >
+          <MonoText
+            style={{
+              textAlign: "center"
+            }}
+          >
+            {loading
+              ? `Loading...`
+              : `We don't have any goals, bro. Let's create'em!`}
+          </MonoText>
         </View>
-      </View>
+      );
+    }
+
+    return (
+      <FlatList
+        horizontal
+        pagingEnabled
+        scrollEnabled
+        showsHorizontalScrollIndicator={false}
+        decelerationRate={0}
+        scrollEventThrottle={16}
+        snapToAlignment="left"
+        style={{ overflow: "visible" }}
+        data={goals}
+        keyExtractor={(item, index) => `${item.title}`}
+        renderItem={({ item, index }) => this.renderGoal(item, index)}
+      />
+    );
+  }
+
+  renderGoal = (item, index) => {
+    return (
       <View
         style={[
           styles.flex,
           styles.column,
+          styles.recommendation,
           {
-            justifyContent: "space-evenly",
-            padding: Layout.padding / 2
+            backgroundColor: "#fff",
+            shadowColor: "#000",
+            shadowOffset: {
+              width: 0,
+              height: 5
+            },
+            shadowOpacity: 0.2,
+            shadowRadius: 10,
+            borderRadius: 10
           }
         ]}
       >
-        <TitleText
-          style={{
-            fontSize: 16 * 1.25,
-            fontWeight: "500",
-            paddingBottom: Layout.padding / 4.5
-          }}
-        >
-          {item.title}
-        </TitleText>
-        <MonoText style={{ color: "#000" }}>{item.description}</MonoText>
+        <View style={[styles.flex, styles.recommendationHeader]}>
+          <Image
+            style={[styles.recommendationImage]}
+            source={{ uri: item.photoURL }}
+          />
+          <View style={[styles.flex, styles.row, styles.recommendationOptions]}>
+            <MonoText style={styles.recommendationTemp}>{item.status}</MonoText>
+          </View>
+        </View>
         <View
           style={[
-            styles.row,
+            styles.flex,
+            styles.column,
             {
-              alignItems: "center",
-              justifyContent: "space-between",
-              marginTop: Layout.margin,
-              backgroundColor: Colors.blue,
-              borderRadius: Layout.padding
-              //   padding: Layout.padding
+              justifyContent: "space-evenly",
+              padding: Layout.padding / 2
             }
           ]}
         >
-          <View
+          <TitleText
             style={{
-              backgroundColor: "red",
-              padding: Layout.padding,
-              borderRadius: Layout.padding
+              fontSize: 16 * 1.25,
+              fontWeight: "500",
+              paddingBottom: Layout.padding / 4.5
             }}
           >
-            <TitleText
-              style={{
-                color: "#000"
-              }}
-            >
-              {item.currentAmount}
-            </TitleText>
-          </View>
+            {item.title}
+          </TitleText>
+          <MonoText style={{ color: "#000" }}>{item.description}</MonoText>
           <View
-            style={{
-              backgroundColor: "transparent",
-              padding: Layout.padding,
-              borderRadius: Layout.padding
-            }}
+            style={[
+              styles.row,
+              {
+                alignItems: "center",
+                justifyContent: "space-between",
+                marginTop: Layout.margin,
+                backgroundColor: Colors.grey,
+                borderWidth: 2,
+                borderColor: "#f5f5f5",
+                borderRadius: Layout.padding
+                //   padding: Layout.padding
+              }
+            ]}
           >
-            <TitleText
+            <View
               style={{
-                color: "#000"
+                backgroundColor: Colors.purple,
+                padding: Layout.padding / 3,
+                borderRadius: Layout.padding,
+                flex: 1
               }}
             >
-              {item.totalAmount}
-            </TitleText>
+              <MonoText
+                style={{
+                  color: Colors.white,
+                  fontSize: 14
+                }}
+              >
+                Atual: R$ {item.currentAmount}
+              </MonoText>
+            </View>
+            <View
+              style={{
+                backgroundColor: "transparent",
+                padding: Layout.padding / 3,
+                borderRadius: Layout.padding,
+                flex: 1
+              }}
+            >
+              <MonoText
+                style={{
+                  color: "#000",
+                  textAlign: "right",
+                  fontSize: 14
+                }}
+              >
+                Total: R$ {item.totalAmount}
+              </MonoText>
+            </View>
           </View>
         </View>
       </View>
-    </View>
-  );
+    );
+  };
+}
+
+Goals.defaultProps = {
+  data: cards
 };
 
 class SavingsScreen extends React.Component {

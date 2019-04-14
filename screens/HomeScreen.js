@@ -40,7 +40,7 @@ export default class HomeScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Navbar />
+        <Navbar title="Home" />
         <Animated.ScrollView
           style={styles.container}
           scrollEventThrottle={16}

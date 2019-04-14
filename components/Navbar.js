@@ -8,16 +8,16 @@ import Layout from "../constants/Layout";
 
 class Navbar extends React.Component {
   render() {
-    const { style } = this.props;
+    const { style, back, title } = this.props;
 
     return (
       <View style={[styles.container, style]}>
         <Icon.Ionicons
-          name="ios-menu"
+          name={`ios-${back ? "arrow-back" : "menu"}`}
           size={Layout.navbarIconSize}
           color={Colors.navbarIconColor}
         />
-        <TitleText style={{ color: "#fff" }}>Home</TitleText>
+        <TitleText style={{ color: "#fff" }}>{title}</TitleText>
         <Icon.Ionicons
           name="ios-notifications-outline"
           size={Layout.navbarIconSize}
